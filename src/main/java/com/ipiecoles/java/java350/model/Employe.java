@@ -62,22 +62,22 @@ public class Employe {
 
     public Integer getNbRtt(LocalDate d) {
         int i1 = d.isLeapYear() ? 365 : 366;
-        int val = 104;
+        int nbSamediDimanche = 104;
         switch (LocalDate.of(d.getYear(), 1, 1).getDayOfWeek()) {
             case THURSDAY:
-                if (d.isLeapYear()) val = val + 1;
+                if (d.isLeapYear()) nbSamediDimanche = nbSamediDimanche + 1;
                 break;
             case FRIDAY:
-                if (d.isLeapYear()) val = val + 2;
-                else val = val + 1;
+                if (d.isLeapYear()) nbSamediDimanche = nbSamediDimanche + 2;
+                else nbSamediDimanche = nbSamediDimanche + 1;
                 break;
             case SATURDAY:
-                val = val + 1;
+                nbSamediDimanche = nbSamediDimanche + 1;
                 break;
         }
         int monInt = (int) Entreprise.joursFeries(d).stream().filter(localDate ->
                 localDate.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue()).count();
-        return (int) Math.ceil((i1 - Entreprise.NB_JOURS_MAX_FORFAIT - val - Entreprise.NB_CONGES_BASE - monInt) * tempsPartiel);
+        return (int) Math.ceil((i1 - Entreprise.NB_JOURS_MAX_FORFAIT - nbSamediDimanche - Entreprise.NB_CONGES_BASE - monInt) * tempsPartiel);
     }
 
     /**
