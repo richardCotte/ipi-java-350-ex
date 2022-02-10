@@ -72,7 +72,7 @@ public class EmployeTest {
     @ParameterizedTest(name = "Pourcentage {0} invalide, ce qui ne modifie donc pas le salaire")
     @CsvSource({
             "-2.1",
-            ",,",
+            ",",
             "0"
     })
     public void augmenterSalaireTestNullOuNégatif(Double pourcentage) {
@@ -84,4 +84,20 @@ public class EmployeTest {
         Assertions.assertThat(employe.getSalaire()).isEqualTo(salaireStart);
 
     }
+
+    @ParameterizedTest(name = "Nombre d'année d'ancienneté : {0} ce qui donne donc {1} jours de congés")
+    @CsvSource({
+            "5, 30",
+            "0, 25"
+    })
+    public void getNbCongesTest(Integer nbAnneeAnciennete, Integer resultat) {
+
+        Employe employe = new Employe("Wick", "John", "M15697", LocalDate.now().minusYears(nbAnneeAnciennete), 1000d, 1, 1.0);
+
+        Integer nbConges = employe.getNbConges();
+
+        Assertions.assertThat(nbConges).isEqualTo(resultat);
+
+    }
+
 }
