@@ -50,7 +50,7 @@ public class EmployeRepositoryTest {
 
         Double result = employeRepository.avgPerformanceWhereMatriculeStartsWith("T");
 
-        Assertions.assertThat(result).isEqualTo(null);
+        Assertions.assertThat(result).isNull();
 
     }
 
@@ -110,7 +110,7 @@ public class EmployeRepositoryTest {
 
         Double result = employeRepository.avgPerformanceWhereMatriculeStartsWith("T");
 
-        Assertions.assertThat(result).isEqualTo(null);
+        Assertions.assertThat(result).isNull();
 
     }
 
