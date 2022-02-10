@@ -99,18 +99,16 @@ public class EmployeRepositoryTest {
 
     }
 
-    @ParameterizedTest(name = "Le type de matricule {0} n'est pas présent, retour null")
-    @CsvSource({
-            "T",
-            "M",
-            "C",
-            ","
-    })
-    public void avgPerformanceWhereMatriculeStartsWithTestWithoutTheLetterInTheList(String letter) {
+    @Test
+    public void avgPerformanceWhereMatriculeStartsWithTestWithoutTheLetterInTheList() {
 
         employeRepository.deleteAll();
 
-        Double result = employeRepository.avgPerformanceWhereMatriculeStartsWith(letter);
+        Employe employeWick = employeRepository.save(new Employe("Wick", "John", "M15697", LocalDate.now(), 1000d, 5, 1.0));
+        Employe employeSimpson = employeRepository.save(new Employe("Simpson", "Hommer", "M12345", LocalDate.now(), 1000d, 9, 1.0));
+        Employe employePutin = employeRepository.save(new Employe("Putin", "Vladimir", "M49785", LocalDate.now(), 1000d, 3, 1.0));
+
+        Double result = employeRepository.avgPerformanceWhereMatriculeStartsWith("T");
 
         Assertions.assertThat(result).isEqualTo(null);
 
