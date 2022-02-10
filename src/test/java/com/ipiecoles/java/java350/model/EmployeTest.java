@@ -35,6 +35,8 @@ public class EmployeTest {
             "'M12345', 0, 1.0, 1, 1700.0",
             "'M12345', 2, 1.0, 1, 1900.0",
             "'T12345', 0, 1.0, 1, 1000.0",
+            ", 0, 1.0, 1, 1000.0",
+            "'T12345', 0, 1.0,, 1000.0",
             "'T12345', 0, 1.0, 3, 3300.0"
     })
     public void testPrimeManagerSansAnceiennetePleinTemps(
